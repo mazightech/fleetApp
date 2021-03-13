@@ -18,13 +18,18 @@ public class EmployeeController {
 
     //return list of employees
     @GetMapping("/employee")
-    public String getEmployees(Model model){
+    public String getEmployees(Model model, String keyword) {
 
-        model.addAttribute("employees",employeeService.getEmployees());
         model.addAttribute("countries",countryService.getCountries());
         model.addAttribute("states",stateService.getStates());
         model.addAttribute("jobTitles",jobTitleService.getJobTitles());
         model.addAttribute("employeeTypes",employeeTypeService.getEmployeeTypes());
+
+        if (keyword != null) {
+            model.addAttribute("employees", employeeService.findByKeyword(keyword));
+        } else {
+            model.addAttribute("employees", employeeService.getEmployees());
+        }
 
         return "employee";
     }
@@ -55,6 +60,12 @@ public class EmployeeController {
     public String deleteEmployee(int id) {
         employeeService.deleteEmployee(id);
 
+        return "redirect:/employee";
+    }
+
+    @GetMapping(value = "/employee/assignUsername")
+    public String assignUsername(int id) {
+        employeeService.assignUsername(id);
         return "redirect:/employee";
     }
 }

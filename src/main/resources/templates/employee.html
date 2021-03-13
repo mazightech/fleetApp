@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+>
 
 <head>
     <meta charset="utf-8">
@@ -312,7 +312,7 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_document_alt"></i>
                         <span>Vehicles</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -325,7 +325,7 @@
                     </ul>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_desktop"></i>
                         <span>Parameters</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -338,7 +338,7 @@
                     </ul>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_desktop"></i>
                         <span>People</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -352,7 +352,7 @@
                     </ul>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_desktop"></i>
                         <span>HR Settings</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -364,7 +364,7 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_desktop"></i>
                         <span>Accounts</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -376,7 +376,7 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
+                    <a class="" href="javascript:">
                         <i class="icon_documents_alt"></i>
                         <span>Globals</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -410,6 +410,12 @@
             <!-- page start-->
             <h1>List of employees</h1>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New employee</button>
+            <br>
+            <form th:action="@{/employee}" th:method="get">
+                <input id="search" th:name="keyword" th:type="text">
+                <button th:type="submit">GO</button>
+            </form>
+
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -428,6 +434,8 @@
                         <a id="photoButton" th:href="@{'/img/employeePhotos' + ${employee.username} + '.jpg'}">
                         <img th:src="@{'/img/employeePhotos' + ${employee.username} + '.jpg'}" th:width="40" th:high="40"></a>
                     </td>
+                    <td><a th:href="@{/employee/assignUsername(id=${employee.id})}"
+                           th:text="${employee.username} ?: 'check'"></a></td>
                     <td th:text="${employee.firstname} +' ' + ${employee.lastname}">Full Name</td>
                     <td th:text="${employee.hireDate}">Hire date</td>
                     <td th:text="${employee.email}">Email</td>
@@ -828,6 +836,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <input id="username-edit" th:name="username" th:type="hidden">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
@@ -1070,7 +1079,6 @@
 
 <!-- Custom Scripts -->
 <script src="js/employee.js"></script>
-
 
 </body>
 

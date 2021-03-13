@@ -31,6 +31,7 @@ $('document').ready(function () {
             var hireDate = employee.hireDate.substr(0,10);
             $('#hireDate-edit').val(hireDate);
             $('#ddlJobTitleEdit').val(employee.jobtitleid);
+            $('#username-edit').val(employee.username);
         });
         // show edit modal
         $('#editModal').modal();
