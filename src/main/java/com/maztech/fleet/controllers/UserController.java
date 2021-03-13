@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
+
 @Controller
 public class UserController {
 
@@ -22,7 +24,7 @@ public class UserController {
 
     //Add New User (register)
     @PostMapping(value = "users/addNew")
-    public RedirectView addUser(User user, RedirectAttributes redir){
+    public RedirectView addUser(@Valid User user, RedirectAttributes redir) {
 
        userService.saveUser(user);
        RedirectView redirectView = new RedirectView("/login",true);

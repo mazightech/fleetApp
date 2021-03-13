@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
 
 <head>
   <meta charset="utf-8">
@@ -9,7 +10,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Profile | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>Profile</title>
 
   <!-- Bootstrap CSS -->
   <link href="../../../../../NiceAdmin/css/bootstrap.min.css" rel="stylesheet">
@@ -316,7 +317,7 @@
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_document_alt"></i>
                           <span>Vehicles</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -329,7 +330,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_desktop"></i>
                           <span>Parameters</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -342,7 +343,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_desktop"></i>
                           <span>People</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -356,7 +357,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_desktop"></i>
                           <span>HR Settings</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -368,7 +369,7 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_desktop"></i>
                           <span>Accounts</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -380,7 +381,7 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a class="" href="javascript:">
                           <i class="icon_documents_alt"></i>
                           <span>Globals</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -428,9 +429,15 @@
                   <p>@jenifersmith</p>
                   <p><i class="fa fa-twitter">jenifertweet</i></p>
                   <h6>
-                                    <span><i class="icon_clock_alt"></i>11:05 AM</span>
-                                    <span><i class="icon_calendar"></i>25.10.13</span>
-                                    <span><i class="icon_pin_alt"></i>NY</span>
+                                    <span><i class="icon_clock_alt"></i>
+                                        <span th:text="${#dates.format(#dates.createNow(),'HH:mm')}"></span>
+                                    </span>
+                      <span><i class="icon_calendar"></i>
+                                        <span th:text="${#dates.format(#dates.createNow(),'dd MMM yyyy')}"></span>
+                                    </span>
+                      <span><i class="icon_pin_alt"></i>
+                                        NY
+                                    </span>
                                 </h6>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">

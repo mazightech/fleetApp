@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+>
 
 <head>
   <meta charset="utf-8">
@@ -47,15 +47,16 @@
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" th:name="firstname" placeholder="Firstname" autofocus>
+          <input autofocus class="form-control" placeholder="Firstname" th:id="firstname" th:name="firstname"
+                 type="text">
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input th:type="text" class="form-control" th:name="lastname" placeholder="Lastname">
+          <input class="form-control" placeholder="Lastname" th:id="lastname" th:name="lastname" th:type="text">
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" th:name="username" placeholder="Username">
+          <input class="form-control" placeholder="Username" th:id="username" th:name="username" type="text">
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>

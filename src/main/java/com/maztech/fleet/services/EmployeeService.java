@@ -1,8 +1,6 @@
 package com.maztech.fleet.services;
 
 import com.maztech.fleet.entities.Employee;
-import com.maztech.fleet.entities.Employee;
-import com.maztech.fleet.repos.EmployeeRepository;
 import com.maztech.fleet.repos.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +31,8 @@ public class EmployeeService {
     public void deleteEmployee(int id) {
         employeeRepository.deleteById(id);
     }
-    
+
+    public Employee findEmployeeByUsername(String username) {
+        return employeeRepository.findByUsername(username);
+    }
 }
