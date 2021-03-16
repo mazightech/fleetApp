@@ -431,11 +431,10 @@
                 <tbody>
                 <tr th:each="employee : ${employees}">
                     <td>
-                        <a id="photoButton" th:href="@{'/img/employeePhotos' + ${employee.username} + '.jpg'}">
-                        <img th:src="@{'/img/employeePhotos' + ${employee.username} + '.jpg'}" th:width="40" th:high="40"></a>
+                        <a id="photoButton" th:href="@{'/img/employeePhotos/' + ${employee.id} + '.jpg'}">
+                            <img th:high="55" th:src="@{'/img/employeePhotos/' + ${employee.id} + '.jpg'}"
+                                 th:width="55"></a>
                     </td>
-                    <td><a th:href="@{/employee/assignUsername(id=${employee.id})}"
-                           th:text="${employee.username} ?: 'check'"></a></td>
                     <td th:text="${employee.firstname} +' ' + ${employee.lastname}">Full Name</td>
                     <td th:text="${employee.hireDate}">Hire date</td>
                     <td th:text="${employee.email}">Email</td>
@@ -466,7 +465,7 @@
 
 <!--Add New employee -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form th:action="@{/employees/addNew}" method="post">
+    <form enctype="multipart/form-data" method="post" th:action="@{/employees/addNew}">
         <div class="modal-dialog modal-lg" role="document" style="width:70%">
             <div class="modal-content">
                 <div class="modal-header">
@@ -635,7 +634,8 @@
                                 <div class="form-group row">
                                     <label for="photo" class="col-sm-4 col-form-label">Select Image: </label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file" id="photo" name="photo" placeholder="Select File">
+                                        <input class="form-control-file" id="photo" name="file"
+                                               placeholder="Select File" type="file">
                                     </div>
                                 </div>
                             </td>
@@ -653,7 +653,7 @@
 
 <!--Update employee-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <form th:action="@{/employees/update}" method="put">
+    <form enctype="multipart/form-data" method="post" th:action="@{/employees/addNew}">
         <div class="modal-dialog modal-lg" role="document" style="width:70%">
             <div class="modal-content">
                 <div class="modal-header">
@@ -828,7 +828,8 @@
                                 <div class="form-group row">
                                     <label for="photo-edit" class="col-sm-4 col-form-label">Select Image: </label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file" id="photo-edit" name="photo" placeholder="Select File">
+                                        <input class="form-control-file" id="photo-edit" name="file"
+                                               placeholder="Select File" type="file">
                                     </div>
                                 </div>
                             </td>
@@ -1057,7 +1058,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="employeePhoto" src="" width="90%" height="90%">
+                <img height="75%" id="employeePhoto" src="" width="100%">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

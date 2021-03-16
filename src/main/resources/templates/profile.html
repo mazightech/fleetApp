@@ -418,9 +418,11 @@
             <div class="profile-widget profile-widget-info">
               <div class="panel-body">
                 <div class="col-lg-2 col-sm-2">
-                  <h4>Jenifer Smith</h4>
+                    <h4><span th:text=" ${employee.firstname} + ' ' + ${employee.lastname}"></span></h4>
                   <div class="follow-ava">
-                    <img src="../../../../../NiceAdmin/img/profile-widget-avatar.jpg" alt="">
+                      <img alt="" th:high="55"
+                           th:src="@{'/img/userPhotos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg' }"
+                           th:width="55">
                   </div>
                   <h6>Administrator</h6>
                 </div>
@@ -612,28 +614,28 @@
                         <h1>Bio Graph</h1>
                         <div class="row">
                           <div class="bio-row">
-                            <p><span>First Name </span>: Jenifer </p>
+                              <p><span>First Name </span> <span th:text="${employee.firstname}"></span></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Last Name </span>: Smith</p>
+                              <p><span>Last Name </span> <span th:text="${employee.lastname}"></span></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Birthday</span>: 27 August 1987</p>
+                              <p><span>Birthday</span> <span th:text="${employee.getDateOfBirth()}"></span></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Country </span>: United</p>
+                              <p><span>Country </span> USA </p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Occupation </span>: UI Designer</p>
+                              <p><span>Occupation </span> UNKNOWN </p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Email </span>:jenifer@mailname.com</p>
+                              <p><span>Email </span> <span th:text="${employee.email}"></span></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Mobile </span>: (+6283) 456 789</p>
+                              <p><span>Mobile </span> <span th:text="${employee.mobile}"></span></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Phone </span>: (+021) 956 789123</p>
+                              <p><span>Phone </span> <span th:text="${employee.phone}"></span></p>
                           </div>
                         </div>
                       </div>
@@ -649,6 +651,14 @@
                       <div class="panel-body bio-graph-info">
                         <h1> Profile Info</h1>
                         <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Select Photo</label>
+                                <div class="col-lg-6">
+                                    <button class="btn btn-primary" data-target="#fileUploadModal" data-toggle="modal"
+                                            type="button">Select
+                                    </button>
+                                </div>
+                            </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">First Name</label>
                             <div class="col-lg-6">
@@ -659,18 +669,6 @@
                             <label class="col-lg-2 control-label">Last Name</label>
                             <div class="col-lg-6">
                               <input type="text" class="form-control" id="l-name" placeholder=" ">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">About Me</label>
-                            <div class="col-lg-10">
-                              <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Country</label>
-                            <div class="col-lg-6">
-                              <input type="text" class="form-control" id="c-name" placeholder=" ">
                             </div>
                           </div>
                           <div class="form-group">
@@ -737,6 +735,38 @@
     </div>
   </section>
   <!-- container section end -->
+  <!--Modal Add photo-->
+  <div class="modal" id="fileUploadModal" role="dialog" tabindex="-1">
+      <form enctype="multipart/form-data" method="post" th:action="@{/profile/uploadPhoto}">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Upload a Photo</h5>
+                      <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label" for="fupPhotoAdd">Select Photo: </label>
+                          <div class="col-sm-6">
+                              <input class="form-control-file" id="fupPhotoAdd" name="file" placeholder="Select File"
+                                     type="file">
+                          </div>
+                          <br>
+                          <button class="btn btn-primary" id="uploadPhoto" type="submit">Upload now</button>
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
   <!-- javascripts -->
   <script src="../../../../../NiceAdmin/js/jquery.js"></script>
   <script src="../../../../../NiceAdmin/js/bootstrap.min.js"></script>
@@ -747,6 +777,7 @@
   <script src="../../../../../NiceAdmin/assets/jquery-knob/js/jquery.knob.js"></script>
   <!--custome script for all page-->
   <script src="../../../../../NiceAdmin/js/scripts.js"></script>
+  <script src="js/profile.js"></script>
 
   <script>
     //knob

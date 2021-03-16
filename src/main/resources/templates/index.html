@@ -273,7 +273,9 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" th:src="@{'/img/employeePhotos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg' }" th:width="38" th:high="38">
+                                <img alt="" th:high="38"
+                                     th:src="@{'/img/userPhotos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg' }"
+                                     th:width="38">
                             </span>
                             <span class="username" th:text="${#authentication.getPrincipal().getUsername()}">Guest</span>
                             <b class="caret"></b>

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 public class EmployeeController {
@@ -36,12 +40,17 @@ public class EmployeeController {
 
     //Save new employee
     @PostMapping("/employees/addNew")
-    public String addEmployee(Employee employee) {
+    public String addEmployee(Employee employee, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
         employeeService.saveEmployee(employee);
+        String baseDirectory = "C:\\Users\\maztech\\eclipse-workspace-2020\\fleet\\src\\main\\resources\\static\\img\\employeePhotos\\";
+        file.transferTo(new File(baseDirectory + employee.getId() + ".jpg"));
+        employee.setPhoto(employee.getFirstname() + " " + employee.getLastname());
+
 
         return "redirect:/employee";
     }
 
+    //Trouver un employee par ID
     @GetMapping("employees/find")
     @ResponseBody
     public Employee findEmployeeById(@RequestParam("id") int id){
@@ -49,13 +58,8 @@ public class EmployeeController {
         return employeeService.findEmployeeById(id);
     }
 
-    @RequestMapping(value = "/employees/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateEmployee(Employee employee) {
-        employeeService.saveEmployee(employee);
 
-        return "redirect:/employee";
-    }
-
+    // Supprimer employee
     @RequestMapping(value = "/employees/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteEmployee(int id) {
         employeeService.deleteEmployee(id);
@@ -63,6 +67,8 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
+
+    // ajouter un username à un employee
     @GetMapping(value = "/employee/assignUsername")
     public String assignUsername(int id) {
         employeeService.assignUsername(id);
