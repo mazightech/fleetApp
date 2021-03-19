@@ -31,5 +31,9 @@ public class InvoiceService {
     public void deleteInvoice(int id) {
         invoiceRepository.deleteById(id);
     }
+
+    public void deleteAllByClientid(int id) {
+        invoiceRepository.deleteAllByClientid(id);
+    }
     
 }

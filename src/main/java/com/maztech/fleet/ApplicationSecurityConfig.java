@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -23,7 +21,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**","/NiceAdmin/**").permitAll()
+                .antMatchers("/login", "/resources/**", "/vendors/**").permitAll()
                 .antMatchers("/register","/js/register.js").permitAll()
                 .antMatchers("/users/addNew").permitAll()
                 .anyRequest().authenticated()

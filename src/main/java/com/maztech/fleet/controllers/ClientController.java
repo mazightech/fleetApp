@@ -1,17 +1,14 @@
 package com.maztech.fleet.controllers;
 
 import com.maztech.fleet.entities.Client;
-import com.maztech.fleet.entities.Country;
-import com.maztech.fleet.entities.State;
 import com.maztech.fleet.services.ClientService;
 import com.maztech.fleet.services.CountryService;
+import com.maztech.fleet.services.InvoiceService;
 import com.maztech.fleet.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class ClientController {
@@ -22,7 +19,8 @@ public class ClientController {
     CountryService countryService;
     @Autowired
     StateService stateService;
-
+    @Autowired
+    InvoiceService invoiceService;
     //return list of clients
     @GetMapping("/clients")
     public String getClients(Model model){
@@ -58,6 +56,7 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteClient(int id) {
+        invoiceService.deleteAllByClientid(id);
         clientService.deleteClient(id);
 
         return "redirect:/clients";
